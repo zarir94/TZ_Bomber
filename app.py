@@ -74,5 +74,6 @@ def delete():
 		msg='Thread Requested to be Stopped'
 
 	return jsonify({"success":success, "msg":msg})
-
-app.run(host='0.0.0.0', port=80)
+	
+if __name__=='__main__':
+	app.run(host='0.0.0.0', port=80)
