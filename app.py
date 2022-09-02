@@ -55,7 +55,7 @@ def status():
 		msg="Invalid Task ID, Thread Could Not Found"
 	else:
 		success=True
-		msg={'mobile':task.mobile,'amount':task.amount,'unlimited':task.unlimited,'attempt':task.attempt,'sent':task.sent,'failed':task.failed,'run':task.run,'completed':task.completed,'remaining':task.remaining}
+		msg={'mobile':task.mobile,'amount':task.amount,'unlimited':task.unlimited,'attempt':task.attempt,'sent':task.sent,'failed':task.failed,'run':task.run,'completed':task.completed,'remaining':task.remaining,'progress':task.progress}
 
 	return jsonify({"success":success, "msg":msg})
 		
