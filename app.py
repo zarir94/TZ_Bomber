@@ -3,10 +3,12 @@ from uptime import uptime
 from datetime import timedelta
 from services import TZ_Bomber
 from random import randint
+from flask_cors import CORS
 
 count=193827
 all_task={}
 app = Flask(__name__)
+CORS(app)
 
 def add_task(mobile, amount, unlimited):
 	global count
