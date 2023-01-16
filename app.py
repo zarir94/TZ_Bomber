@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, jsonify, request
 from uptime import uptime
 from datetime import timedelta
 from services import TZ_Bomber
@@ -18,19 +18,18 @@ def add_task(mobile, amount, unlimited):
 	all_task[id]=TZ_Bomber(mobile, amount, unlimited)
 	all_task[id].start()
 	return id
-	
+
 
 @app.route('/', methods=["GET", "POST"])
 def index():
 	sys_up=timedelta(seconds=int(uptime()))
-	return f"<h3>System Uptime {sys_up} seconds</h3>"
+	return f"<h3>System Uptime {sys_up} seconds</h3><p>v1.5</p>"
 
 @app.route("/api/add", methods=["POST"])
 def add():
 	mobile=int(request.form.get('mob'))
 	amount=int(request.form.get('amount'))
 	unlimited=True if request.form.get('unlimited')=='true' else False
-
 	success=False
 	task_id=None
 	if len(str(mobile))!=10:

