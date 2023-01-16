@@ -19,7 +19,6 @@ def add_task(mobile, amount, unlimited):
 	all_task[id].start()
 	return id
 
-
 @app.route('/', methods=["GET", "POST"])
 def index():
 	sys_up=timedelta(seconds=int(uptime()))
