@@ -22,7 +22,7 @@ def add_task(mobile, amount, unlimited):
 @app.route('/', methods=["GET", "POST"])
 def index():
 	sys_up=timedelta(seconds=int(uptime()))
-	return f"<h3>System Uptime {sys_up} seconds</h3><p>v1.5</p>"
+	return f"<h3>System Uptime {sys_up} seconds</h3><p>v1.8</p>"
 
 @app.route("/api/add", methods=["POST"])
 def add():
@@ -76,4 +76,4 @@ def delete():
 	return jsonify({"success":success, "msg":msg})
 	
 if __name__=='__main__':
-	app.run(host='0.0.0.0', port=80)
+	app.run(host='0.0.0.0', port=80, debug=True)

